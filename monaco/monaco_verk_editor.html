@@ -1,0 +1,51 @@
+<style>
+  .full {
+    height: 100vh;
+    width: 100vw;
+  }
+</style>
+<div class="col pc:row start-start h-12/12 w-12/12">
+  <v-new class="full" src="./monaco_editor.html" props="$hook.editorProps">
+    <div loading class="full col center-center c-gray-700 bg-gray-100 fs-sm">
+      Loading Editor...
+    </div>
+  </v-new>
+  <v-show
+    value="$hook.props.view"
+    class="full pl-sm overflow-auto mini-scrollbar"
+  >
+    <div runner class="full"></div>
+  </v-show>
+</div>
+<script>
+  $hook.editorProps = {
+    setValue: (cb) => {
+      cb();
+    },
+    onChange: (code) => {
+      if ($hook.props.view) {
+        const el = $hook.el.querySelector("[runner]");
+        if (el) {
+          $verk.initByCode(code).then((v) => {
+            el.innerHTML = v;
+          });
+        }
+      }
+    },
+    options: {
+      value: window.customCode || "<div>hello</div>",
+      language: window.customLanguage || "html",
+      ...$hook.props.options,
+    },
+    onMount: (editor) => {
+      if ($hook.props.getValue) {
+        Promise.resolve($hook.props.getValue).then(function (v) {
+          editor.setValue(v);
+        });
+      } else {
+        const v = $hook.editorProps.options.value;
+        editor.setValue(v);
+      }
+    },
+  };
+</script>

@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="./js/vanilla_markdown.css" />
+<script src="./amd/marked.js"></script>
+<script src="./amd/mermaid.js"></script>
+<script defer="1" src="./js/vanilla_markdown.js"></script>
+<div css="p-md pc:p-lg max-w-screen-lg m-auto">
+  <div md></div>
+</div>
+<script>
+  window.vanillaMarkdownDir = $hook.dir;
+  return () => {
+    const md = $hook.el.querySelector("[md]");
+    if ($hook.props.url) {
+      fetch($hook.props.url)
+        .then(function (v) {
+          return v.text();
+        })
+        .then(function (v) {
+          VanillaMarkdown(md, v, $hook.props['moc-level'], $hook.props['moc-last']);
+        });
+    } else {
+      VanillaMarkdown(md, $hook.props.code, $hook.props['moc-level'], $hook.props['moc-last']);
+    }
+  }
+</script>

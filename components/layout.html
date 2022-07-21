@@ -1,0 +1,11 @@
+<div class="layout-col h-vh max-h-vh">
+  <slot name="header"></slot>
+  <div class="layout-row overflow-y-auto">
+    <slot class="none pc:block" name="menu"></slot>
+    <div class="overflow-y-auto h-12/12">
+      <slot name="main"></slot>
+    </div>
+    <div></div>
+  </div>
+  <footer></footer>
+</div>

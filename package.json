@@ -1,0 +1,16 @@
+{
+  "name": "verk-monaco-html",
+  "version": "0.0.2",
+  "description": "",
+  "private": false,
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

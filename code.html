@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verk</title>
+    <link
+      rel="icon"
+      href="https://unpkg.com/verk-monaco-html@0.0.2/favicon.ico"
+    />
+  </head>
+  <script src="https://unpkg.com/verk-monaco-html@0.0.2/js/verk.min.js"></script>
+  <body>
+    <div>
+      <v-new src="./monaco/monaco_verk_editor.html" />
+    </div>
+  </body>
+
+  <script>
+    window.customCode = `
+export const apiAccountSignin = (signinWithPassword: SigninWithPassword):Promise<Account> => {return (window as any).customFetch("/v1/account/signin_with_password", "POST", signinWithPassword); }
+export interface SigninWithPassword {
+  crown: string; 
+  phone: string; 
+  password?: string; 
+}  
+`;
+    window.customLanguage = "typescript";
+  </script>
+</html>
